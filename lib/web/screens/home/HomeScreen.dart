@@ -1,5 +1,7 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttericon/font_awesome_icons.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'dart:html' as html;
 
 import 'package:mysite/web/screens/about/AboutMeScreen.dart';
@@ -73,94 +75,109 @@ class _HomeScreenState extends State<HomeScreen> {
         preferredSize: Size.fromHeight(sizeHeight),
         child: TopBar(
           screenSizeHeight: sizeHeight,
+          radius: null,
         ),
       ),
+      extendBodyBehindAppBar: true,
       body: Container(
         height: screenSize.height,
-        color: Colors.black,
+        width: screenSize.width,
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("./images/eu.jpeg"),
+            fit: BoxFit.fill,
+            colorFilter: ColorFilter.mode(
+                Colors.black.withOpacity(0.5), BlendMode.darken),
+          ),
+        ),
         child: SingleChildScrollView(
           child: Column(
             children: [
+              SizedBox(
+                height: 225,
+              ),
               Container(
-                height: MediaQuery.of(context).size.height * 0.6,
-                color: Colors.transparent,
-                child: SingleChildScrollView(
-                  physics: NeverScrollableScrollPhysics(),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Container(
-                        margin: EdgeInsets.only(top: 150),
-                        child: Text(
-                          "Welcome to my personal site",
-                          style: TextStyle(color: Colors.white, fontSize: 50),
-                        ),
+                child: AnimatedTextKit(
+                  repeatForever: true,
+                  isRepeatingAnimation: true,
+                  animatedTexts: [
+                    TypewriterAnimatedText(
+                      "Welcome to my personal site",
+                      speed: Duration(milliseconds: 80),
+                      textStyle: TextStyle(
+                        color: Colors.white,
+                        fontSize: 50,
+                        fontFamily: GoogleFonts.fruktur().fontFamily,
                       ),
-                      Container(
-                        margin: EdgeInsets.only(top: 10),
-                        child: Text(
-                          "I'm Fernando Sinigaglia",
-                          style: TextStyle(color: Colors.white, fontSize: 50),
-                        ),
-                      ),
-                      Container(
-                        margin: EdgeInsets.only(top: 20, bottom: 20),
-                        child: Text(
-                          "Contact me by:",
-                          style: TextStyle(color: Colors.white),
-                        ),
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Container(
-                            child: TextButton(
-                              child: Text(
-                                "in",
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 50,
-                                    color: Colors.white),
-                              ),
-                              onPressed: () {
-                                html.window.open(linkedinUrl!, "");
-                              },
-                            ),
-                          ),
-                          Container(
-                            margin: EdgeInsets.only(left: 20, right: 20),
-                            child: TextButton(
-                              child: Icon(
-                                Icons.email,
-                                size: 50,
-                              ),
-                              onPressed: () async {
-                                await showEmailDialog();
-                              },
-                              style:
-                                  TextButton.styleFrom(primary: Colors.white),
-                            ),
-                          ),
-                          Container(
-                            margin: EdgeInsets.only(right: 20),
-                            child: TextButton(
-                              child: Icon(
-                                FontAwesome.github_circled,
-                                size: 50,
-                                color: Colors.white,
-                              ),
-                              onPressed: () async {
-                                html.window.open(githubLink!, "");
-                              },
-                              style:
-                                  TextButton.styleFrom(primary: Colors.white),
-                            ),
-                          ),
-                        ],
-                      )
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
+              ),
+              Container(
+                  margin: EdgeInsets.only(top: 10),
+                  child: AnimatedTextKit(
+                    repeatForever: true,
+                    isRepeatingAnimation: true,
+                    animatedTexts: [
+                      TypewriterAnimatedText(
+                        "I'm Fernando Sinigaglia",
+                        speed: Duration(milliseconds: 80),
+                        textStyle: TextStyle(color: Colors.white, fontSize: 50, fontFamily: GoogleFonts.londrinaOutline().fontFamily),
+                      ),
+                    ],
+                  )),
+              Container(
+                margin: EdgeInsets.only(top: 20, bottom: 20, right: 40),
+                child: Text(
+                  "Contact me by:",
+                  style: TextStyle(color: Colors.white),
+                ),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    child: TextButton(
+                      child: Text(
+                        "in",
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 50,
+                            color: Colors.white),
+                      ),
+                      onPressed: () {
+                        html.window.open(linkedinUrl!, "");
+                      },
+                    ),
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(left: 20, right: 20),
+                    child: TextButton(
+                      child: Icon(
+                        Icons.email,
+                        size: 50,
+                      ),
+                      onPressed: () async {
+                        await showEmailDialog();
+                      },
+                      style: TextButton.styleFrom(primary: Colors.white),
+                    ),
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(right: 20, bottom: 20),
+                    child: TextButton(
+                      child: Icon(
+                        FontAwesome.github_circled,
+                        size: 50,
+                        color: Colors.white,
+                      ),
+                      onPressed: () async {
+                        html.window.open(githubLink!, "");
+                      },
+                      style: TextButton.styleFrom(primary: Colors.white),
+                    ),
+                  ),
+                ],
               )
             ],
           ),

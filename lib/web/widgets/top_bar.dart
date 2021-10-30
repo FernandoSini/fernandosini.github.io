@@ -27,41 +27,62 @@ class _TopBarState extends State<TopBar> {
       preferredSize: widget.screenSizeHeight != null
           ? Size.fromHeight(widget.screenSizeHeight!)
           : Size.fromHeight(100),
-      child: AppBar(
-        shape: widget.radius != null
-            ? RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(widget.radius!),
-              )
+      child: Container(
+        padding: widget.radius != null
+            ? EdgeInsets.only(left: 20, right: 20, top: 5)
             : null,
-        automaticallyImplyLeading: true,
-        backgroundColor: widget.color?.withOpacity(widget.opacity!),
-        // toolbarHeight: 100,
-        leading: InkWell(
-          onHover: (value) {},
-          onTap: () {},
-          hoverColor: Colors.transparent,
-          splashColor: Colors.transparent,
-          highlightColor: Colors.transparent,
-          child: Container(
-            padding: EdgeInsets.only(left: 20, top: 25, right: 20),
-            child: Text(
-              "Home",
-              style: TextStyle(fontSize: 20),
+        child: AppBar(
+          shape: widget.radius != null
+              ? RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(widget.radius!),
+                )
+              : null,
+          automaticallyImplyLeading: true,
+          backgroundColor: widget.color != null
+              ? widget.color?.withOpacity(widget.opacity!)
+              : Colors.transparent,
+          elevation: 0,
+          // toolbarHeight: 100,
+          leading: InkWell(
+            onHover: (value) {},
+            onTap: () {
+              Navigator.of(context).pushReplacementNamed("/home");
+            },
+            hoverColor: Colors.transparent,
+            splashColor: Colors.transparent,
+            highlightColor: Colors.transparent,
+            child: Container(
+              padding: EdgeInsets.only(left: 40, top: 25),
+              child: Text(
+                "Home",
+                style: TextStyle(fontSize: 20),
+              ),
             ),
           ),
+          leadingWidth: 100,
+          centerTitle: true,
+          title: Responsive.isSmallScreen(context)
+              ? null
+              : Container(
+                  child: Wrap(
+                    alignment: WrapAlignment.center,
+                    children: [
+                      InkWell(
+                        onTap: () {
+                          Navigator.of(context).pushReplacementNamed("/about");
+                        },
+                        child: Container(
+                          child: Text(
+                            "About me",
+                            style: TextStyle(fontSize: 20, color: Colors.white),
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+          actions: [Container()],
         ),
-        leadingWidth: 100,
-        centerTitle: true,
-        title: Responsive.isSmallScreen(context)
-            ? null
-            : Container(
-                child: Wrap(),
-              ),
-        actions: [
-          Container(
-            child: Wrap(),
-          )
-        ],
       ),
     );
   }

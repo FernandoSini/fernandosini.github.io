@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:mysite/web/widgets/top_bar.dart';
 
 class AboutMeScreen extends StatefulWidget {
   @override
@@ -9,14 +10,29 @@ class AboutMeScreen extends StatefulWidget {
 class _AboutMeScreenState extends State<AboutMeScreen> {
   @override
   Widget build(BuildContext context) {
+    var screenSize = MediaQuery.of(context).size;
+    double sizeHeight = 80;
     return Scaffold(
+      appBar: PreferredSize(
+        child: TopBar(
+          screenSizeHeight: sizeHeight,
+          radius: null,
+        ),
+        preferredSize: Size.fromHeight(sizeHeight),
+      ),
+      extendBodyBehindAppBar: true,
       body: Container(
+        height: screenSize.height,
+        width: screenSize.width,
         color: Colors.black,
         child: SingleChildScrollView(
           child: Column(
-            children: [   
+            children: [
+              SizedBox(
+                height: 150,
+              ),
               Container(
-                height: MediaQuery.of(context).size.height * 0.6,
+                height: screenSize.height * 0.6,
                 color: Colors.transparent,
                 child: SingleChildScrollView(
                   physics: NeverScrollableScrollPhysics(),
