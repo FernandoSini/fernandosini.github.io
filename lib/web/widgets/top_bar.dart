@@ -68,6 +68,9 @@ class _TopBarState extends State<TopBar> {
                     alignment: WrapAlignment.center,
                     children: [
                       InkWell(
+                        hoverColor: Colors.transparent,
+                        splashColor: Colors.transparent,
+                        highlightColor: Colors.transparent,
                         onTap: () {
                           Navigator.of(context).pushReplacementNamed("/about");
                         },
