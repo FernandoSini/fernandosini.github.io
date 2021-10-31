@@ -24,7 +24,14 @@ class _AboutMeScreenState extends State<AboutMeScreen> {
       body: Container(
         height: screenSize.height,
         width: screenSize.width,
-        color: Colors.black,
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("./images/eu.jpeg"),
+            fit: BoxFit.fill,
+            colorFilter: ColorFilter.mode(
+                Colors.black.withOpacity(0.5), BlendMode.darken),
+          ),
+        ),
         child: SingleChildScrollView(
           child: Column(
             children: [

@@ -66,6 +66,7 @@ class _HomeScreenState extends State<HomeScreen> {
       "https://www.linkedin.com/in/fernando-fazio-sinigaglia-58179211b/";
   final String? email = "sinigagliafernando@gmail.com";
   final String? githubLink = "https://github.com/fernandosini";
+  final String? instagramLink = "https://www.instagram.com/fernandoosini";
   @override
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context).size;
@@ -122,7 +123,11 @@ class _HomeScreenState extends State<HomeScreen> {
                       TypewriterAnimatedText(
                         "I'm Fernando Sinigaglia",
                         speed: Duration(milliseconds: 80),
-                        textStyle: TextStyle(color: Colors.white, fontSize: 50, fontFamily: GoogleFonts.londrinaOutline().fontFamily),
+                        textStyle: TextStyle(
+                            color: Colors.white,
+                            fontSize: 50,
+                            fontFamily:
+                                GoogleFonts.londrinaOutline().fontFamily),
                       ),
                     ],
                   )),
@@ -173,6 +178,20 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                       onPressed: () async {
                         html.window.open(githubLink!, "");
+                      },
+                      style: TextButton.styleFrom(primary: Colors.white),
+                    ),
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(right: 20, bottom: 20),
+                    child: TextButton(
+                      child: Icon(
+                        FontAwesome.instagram,
+                        size: 50,
+                        color: Colors.white,
+                      ),
+                      onPressed: () async {
+                        html.window.open(instagramLink!, "");
                       },
                       style: TextButton.styleFrom(primary: Colors.white),
                     ),
