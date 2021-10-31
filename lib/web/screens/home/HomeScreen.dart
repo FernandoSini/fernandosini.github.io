@@ -13,7 +13,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  Future<void> showEmailDialog() async {
+  /* Future<void> showEmailDialog() async {
     return showDialog(
       context: context,
       builder: (_) {
@@ -57,6 +57,66 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
         );
+      },
+    );
+  } */
+  Future<void> showEmailDialog() async {
+    showGeneralDialog(
+      barrierColor: Colors.black.withOpacity(0.5),
+      transitionBuilder: (context, a1, a2, widget) {
+        return Transform.scale(
+          scale: a1.value,
+          child: Opacity(
+            opacity: a1.value,
+            child: Container(
+              child: AlertDialog(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                title: Text("Info"),
+                actions: [
+                  Container(
+                    margin: EdgeInsets.only(right: 100, bottom: 10),
+                    child: TextButton(
+                      child: Text(
+                        "Close",
+                        style: TextStyle(
+                          fontSize: 20,
+                          color: Colors.red,
+                        ),
+                      ),
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                    ),
+                  )
+                ],
+                content: Container(
+                  height: MediaQuery.of(context).size.height * 0.2,
+                  margin: EdgeInsets.only(bottom: 30),
+                  child: Column(
+                    children: [
+                      const SizedBox(height: 30),
+                      Icon(
+                        Icons.email,
+                        color: Colors.black,
+                        size: 80,
+                      ),
+                      Text("$email"),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
+        );
+      },
+      transitionDuration: Duration(milliseconds: 200),
+      barrierDismissible: false,
+      barrierLabel: '',
+      context: context,
+      pageBuilder: (context, animation1, animation2) {
+        return Text("");
       },
     );
   }
