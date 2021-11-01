@@ -64,6 +64,7 @@ class _TopBarState extends State<TopBar> {
           title: Responsive.isSmallScreen(context)
               ? null
               : Container(
+                padding: EdgeInsets.only(top:25),
                   child: Wrap(
                     alignment: WrapAlignment.center,
                     children: [
