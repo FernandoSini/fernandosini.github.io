@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:mysite/web/routes/web_routes_name.dart';
 import 'package:mysite/web/widgets/responsive.dart';
-import 'package:qlevar_router/qlevar_router.dart';
 
 class TopBar extends StatefulWidget {
   const TopBar(
@@ -37,43 +34,37 @@ class _TopBarState extends State<TopBar> {
         child: AppBar(
           shape: widget.radius != null
               ? RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(widget.radius ?? 0),
+                  borderRadius: BorderRadius.circular(widget.radius!),
                 )
               : null,
           automaticallyImplyLeading: true,
           backgroundColor: widget.color != null
-              ? widget.color?.withOpacity(widget.opacity ?? 1)
+              ? widget.color?.withOpacity(widget.opacity!)
               : Colors.transparent,
           elevation: 0,
           // toolbarHeight: 100,
           leading: InkWell(
             onHover: (value) {},
             onTap: () {
-              QR.toName(WebRoutesNames.landing);
+              Navigator.of(context).pushReplacementNamed("/home");
             },
             hoverColor: Colors.transparent,
             splashColor: Colors.transparent,
             highlightColor: Colors.transparent,
             child: Container(
-              padding: EdgeInsets.only(
-                  left: 40, top: widget.screenSizeHeight! <= 60 ? 15 : 25),
+              padding: EdgeInsets.only(left: 40, top: 25),
               child: Text(
                 "Home",
-                style: TextStyle(
-                  fontSize: 20,
-                  fontFamily: GoogleFonts.montserratAlternates().fontFamily,
-                  fontWeight: FontWeight.bold,
-                ),
+                style: TextStyle(fontSize: 20),
               ),
             ),
           ),
-          leadingWidth: 150,
+          leadingWidth: 100,
           centerTitle: true,
           title: Responsive.isSmallScreen(context)
               ? null
               : Container(
-                  padding: EdgeInsets.only(
-                      top: widget.screenSizeHeight! <= 60 ? 0 : 25),
+                padding: EdgeInsets.only(top:25),
                   child: Wrap(
                     alignment: WrapAlignment.center,
                     children: [
@@ -82,24 +73,19 @@ class _TopBarState extends State<TopBar> {
                         splashColor: Colors.transparent,
                         highlightColor: Colors.transparent,
                         onTap: () {
-                          QR.toName(WebRoutesNames.aboutMe);
+                          Navigator.of(context).pushReplacementNamed("/about");
                         },
-                        child: Text(
-                          "About me",
-                          style: TextStyle(
-                              fontFamily:
-                                  GoogleFonts.montserratAlternates().fontFamily,
-                              fontSize: 20,
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold),
+                        child: Container(
+                          child: Text(
+                            "About me",
+                            style: TextStyle(fontSize: 20, color: Colors.white),
+                          ),
                         ),
-                      ),
+                      )
                     ],
                   ),
                 ),
-          actions: [
-            Container(),
-          ],
+          actions: [Container()],
         ),
       ),
     );
