@@ -33,7 +33,7 @@ class _TopBarState extends State<TopBar> {
       child: Container(
         padding: widget.radius != null
             ? EdgeInsets.only(left: 20, right: 20, top: 5)
-            : null,
+            : EdgeInsets.only(left: 40),
         child: AppBar(
           shape: widget.radius != null
               ? RoundedRectangleBorder(
@@ -60,7 +60,8 @@ class _TopBarState extends State<TopBar> {
               child: Text(
                 "Home",
                 style: TextStyle(
-                  fontSize: 20,
+                  fontSize: 15,
+                  color: Color(0xffF5C800),
                   fontFamily: GoogleFonts.montserratAlternates().fontFamily,
                   fontWeight: FontWeight.bold,
                 ),
@@ -89,9 +90,10 @@ class _TopBarState extends State<TopBar> {
                           style: TextStyle(
                               fontFamily:
                                   GoogleFonts.montserratAlternates().fontFamily,
-                              fontSize: 20,
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold),
+                              fontSize: 15,
+                              //color: Colors.white,
+                              color: Color(0xffF5C800),
+                              fontWeight: FontWeight.w700),
                         ),
                       ),
                     ],

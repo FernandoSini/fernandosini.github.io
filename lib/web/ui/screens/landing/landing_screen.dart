@@ -1,4 +1,5 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttericon/font_awesome5_icons.dart';
 import 'package:fluttericon/font_awesome_icons.dart';
@@ -133,6 +134,8 @@ class _LandingScreenState extends State<LandingScreen> {
 
   @override
   Widget build(BuildContext context) {
+    ScrollController scrollController =
+        ScrollController(initialScrollOffset: 0, keepScrollOffset: true);
     var screenSize = MediaQuery.of(context).size;
     double sizeHeight = 60;
     return Scaffold(
@@ -145,10 +148,12 @@ class _LandingScreenState extends State<LandingScreen> {
         ),
       ),
       extendBodyBehindAppBar: true,
+      extendBody: true,
       body: Container(
         height: screenSize.height,
         width: screenSize.width,
         child: ListView(
+          controller: scrollController,
           padding: EdgeInsets.only(top: 0),
           children: [
             Stack(
@@ -185,10 +190,15 @@ class _LandingScreenState extends State<LandingScreen> {
                     child: Column(
                       children: [
                         SizedBox(
-                          height: 180,
+                          height: kIsWeb
+                              ? screenSize.height < 1000
+                                  ? 210
+                                  : 240
+                              : 220,
                         ),
                         Container(
                           height: screenSize.height * 0.7,
+                          //color: Colors.pink,
                           child: Row(
                             children: [
                               const SizedBox(
@@ -197,12 +207,13 @@ class _LandingScreenState extends State<LandingScreen> {
                               Container(
                                 height: screenSize.height,
                                 padding: EdgeInsets.only(
-                                    top: screenSize.height / 12),
+                                    top: screenSize.height / 15),
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
                                     Container(
-                                      margin: EdgeInsets.only(bottom: 5),
+                                      margin:
+                                          EdgeInsets.only(bottom: 5, right: 5),
                                       child: TextButton(
                                         child: Text(
                                           "in",
@@ -218,7 +229,7 @@ class _LandingScreenState extends State<LandingScreen> {
                                     ),
                                     Container(
                                       margin: EdgeInsets.only(
-                                          left: 20, right: 20, bottom: 10),
+                                          left: 15, right: 20, bottom: 10),
                                       child: TextButton(
                                         child: Icon(
                                           Icons.email,
@@ -233,7 +244,7 @@ class _LandingScreenState extends State<LandingScreen> {
                                     ),
                                     Container(
                                       margin: EdgeInsets.only(
-                                          right: 20, left: 20, bottom: 10),
+                                          right: 20, left: 15, bottom: 10),
                                       child: TextButton(
                                         child: Icon(
                                           FontAwesome.github_circled,
@@ -249,7 +260,7 @@ class _LandingScreenState extends State<LandingScreen> {
                                     ),
                                     Container(
                                       margin: EdgeInsets.only(
-                                          right: 20, left: 20, bottom: 10),
+                                          right: 20, left: 15, bottom: 10),
                                       child: TextButton(
                                         child: Icon(
                                           FontAwesome.instagram,
@@ -271,80 +282,125 @@ class _LandingScreenState extends State<LandingScreen> {
                               ),
                               Container(
                                 height: screenSize.height,
+                                width: screenSize.width * 0.7,
                                 child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Container(
-                                      child: AnimatedTextKit(
-                                        repeatForever: true,
-                                        isRepeatingAnimation: true,
-                                        animatedTexts: [
-                                          TypewriterAnimatedText(
-                                              "Welcome to my personal site",
-                                              speed: Duration(milliseconds: 80),
-                                              textStyle: TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 35,
-                                                fontFamily:
-                                                    GoogleFonts.fruktur()
-                                                        .fontFamily,
-                                              ),
-                                              textAlign: TextAlign.start),
-                                        ],
-                                      ),
-                                    ),
-                                    Container(
-                                      margin: EdgeInsets.only(top: 10),
-                                      child: AnimatedTextKit(
-                                        repeatForever: true,
-                                        isRepeatingAnimation: true,
-                                        animatedTexts: [
-                                          TypewriterAnimatedText(
-                                            "I'm Fernando Sinigaglia",
-                                            speed: Duration(milliseconds: 80),
-                                            textStyle: TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 25,
-                                                fontFamily: GoogleFonts
-                                                        .londrinaOutline()
-                                                    .fontFamily),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    const SizedBox(
-                                      height: 50,
-                                    ),
-                                    SizedBox(
-                                      height: 50,
-                                      width: 200,
-                                      child: OutlinedButton(
-                                        style: OutlinedButton.styleFrom(
-                                            //foregroundColor: Color(0xffF00C7F5),
-                                            foregroundColor: Color(0xffF5C800),
-                                            side: BorderSide(
-                                              // color: Color(0xffF5C800),
-                                              width: 3,
-                                              //color: Color(0xffF00C7F5),
-                                              color: Color(0xffF5C800),
-                                            )),
-                                        onPressed: () {},
-                                        child: Text(
-                                          "Contact me",
-                                          style: TextStyle(
-                                            fontSize: 20,
-                                            fontWeight: FontWeight.bold,
-                                            fontFamily: GoogleFonts
-                                                    .montserratAlternates()
-                                                .fontFamily,
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Container(
+                                          child: AnimatedTextKit(
+                                            repeatForever: true,
+                                            isRepeatingAnimation: true,
+                                            animatedTexts: [
+                                              TypewriterAnimatedText(
+                                                  "Welcome to my personal site",
+                                                  speed: Duration(
+                                                      milliseconds: 80),
+                                                  textStyle: TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 35,
+                                                    fontFamily:
+                                                        GoogleFonts.fruktur()
+                                                            .fontFamily,
+                                                  ),
+                                                  textAlign: TextAlign.start),
+                                            ],
                                           ),
                                         ),
+                                        Container(
+                                          margin: EdgeInsets.only(top: 10),
+                                          child: AnimatedTextKit(
+                                            repeatForever: true,
+                                            isRepeatingAnimation: true,
+                                            animatedTexts: [
+                                              TypewriterAnimatedText(
+                                                "I'm Fernando Sinigaglia",
+                                                speed:
+                                                    Duration(milliseconds: 80),
+                                                textStyle: TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 25,
+                                                    fontFamily: GoogleFonts
+                                                            .londrinaOutline()
+                                                        .fontFamily),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        const SizedBox(
+                                          height: 50,
+                                        ),
+                                        SizedBox(
+                                          height: 50,
+                                          width: 200,
+                                          child: OutlinedButton(
+                                            style: OutlinedButton.styleFrom(
+                                                //foregroundColor: Color(0xffF00C7F5),
+                                                foregroundColor:
+                                                    Color(0xffF5C800),
+                                                side: BorderSide(
+                                                  // color: Color(0xffF5C800),
+                                                  width: 3,
+                                                  //color: Color(0xffF00C7F5),
+                                                  color: Color(0xffF5C800),
+                                                )),
+                                            onPressed: () {
+                                              scrollController.animateTo(
+                                                  screenSize.height * 3,
+                                                  duration: const Duration(
+                                                      seconds: 1),
+                                                  curve: Curves.fastOutSlowIn);
+                                            },
+                                            child: Text(
+                                              "Contact me",
+                                              style: TextStyle(
+                                                fontSize: 20,
+                                                fontWeight: FontWeight.bold,
+                                                fontFamily: GoogleFonts
+                                                        .montserratAlternates()
+                                                    .fontFamily,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    Container(
+                                      alignment: Alignment.bottomCenter,
+                                      //height: 100,
+                                      margin: EdgeInsets.only(bottom: 50),
+                                      width: screenSize.width,
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          IconButton(
+                                            splashColor: Colors.white,
+                                            onPressed: () {
+                                              scrollController.animateTo(
+                                                  screenSize.height * 1,
+                                                  duration: const Duration(
+                                                      seconds: 1),
+                                                  curve: Curves.fastOutSlowIn);
+                                            },
+                                            icon: Icon(
+                                              Icons.arrow_downward,
+                                              size: 30,
+                                              color: Colors.white,
+                                            ),
+                                          ),
+                                        ],
                                       ),
-                                    )
+                                    ),
                                   ],
                                 ),
                               ),
+
                               /*Container(
                                 margin: EdgeInsets.only(top: 20, bottom: 20, right: 40),
                                 child: Text(
@@ -359,6 +415,38 @@ class _LandingScreenState extends State<LandingScreen> {
                     ),
                   ),
                 ),
+                Positioned(
+                  top: 60,
+                  child: Container(
+                    height: kIsWeb
+                        ? screenSize.height < 1000
+                            ? screenSize.height * 0.25
+                            : screenSize.height * 0.4
+                        : screenSize.height * 0.25,
+                    width: 200,
+                    child: VerticalDivider(
+                      color: Colors.white,
+                      thickness: 2,
+                      width: 5,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  top: 450,
+                  child: Container(
+                    height: kIsWeb
+                        ? screenSize.height < 1000
+                            ? screenSize.height * 0.25
+                            : screenSize.height * 0.4
+                        : screenSize.height * 0.25,
+                    width: 200,
+                    child: VerticalDivider(
+                      color: Colors.white,
+                      thickness: 2,
+                      width: 5,
+                    ),
+                  ),
+                ),
               ],
             ),
             Container(
@@ -366,7 +454,8 @@ class _LandingScreenState extends State<LandingScreen> {
               width: screenSize.width,
               // color: Color(0xff0000F5),
               //   color: Color(0xffF5C800),
-              color: Color(0xff0000A8),
+              // color: Color(0xff0000A8),
+              color: Colors.white,
 
               child: SizedBox(
                 child: SingleChildScrollView(
@@ -411,7 +500,7 @@ class _LandingScreenState extends State<LandingScreen> {
                       ),
                       Container(
                         width: screenSize.width * 0.8,
-                        height: screenSize.height * 0.75,
+                        height: screenSize.height * 0.6,
                         decoration: BoxDecoration(
                             color: Colors.grey[300],
                             borderRadius: BorderRadius.circular(20),
@@ -550,6 +639,33 @@ class _LandingScreenState extends State<LandingScreen> {
                           ],
                         ),
                       ),
+                      const SizedBox(
+                        height: 50,
+                      ),
+                      Container(
+                        alignment: Alignment.bottomCenter,
+                        //height: 100,
+                        width: screenSize.width,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            IconButton(
+                              splashColor: Colors.white,
+                              onPressed: () {
+                                scrollController.animateTo(
+                                    screenSize.height * 2,
+                                    duration: const Duration(seconds: 1),
+                                    curve: Curves.fastOutSlowIn);
+                              },
+                              icon: Icon(
+                                Icons.arrow_downward,
+                                size: 30,
+                                color: Color(0xff0000a8),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
                     ],
                   ),
                 ),
@@ -568,7 +684,7 @@ class _LandingScreenState extends State<LandingScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Stack(
+                      /* Stack(
                         children: [
                           Text(
                             "What you can expect from me",
@@ -599,13 +715,13 @@ class _LandingScreenState extends State<LandingScreen> {
                             ),
                           ),
                         ],
-                      ),
+                      ), */
                       const SizedBox(
                         height: 40,
                       ),
                       Container(
                         width: screenSize.width * 0.8,
-                        height: screenSize.height * 0.75,
+                        height: screenSize.height * 0.7,
                         decoration: BoxDecoration(
                             color: Colors.grey[300],
                             borderRadius: BorderRadius.circular(20),
@@ -640,7 +756,7 @@ class _LandingScreenState extends State<LandingScreen> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Container(
-                                  height: screenSize.height * 0.5,
+                                  height: screenSize.height * 0.4,
                                   width: screenSize.width * 0.1,
                                   child: Column(
                                     children: [
@@ -671,7 +787,7 @@ class _LandingScreenState extends State<LandingScreen> {
                                   ),
                                 ),
                                 Container(
-                                  height: screenSize.height * 0.5,
+                                  height: screenSize.height * 0.4,
                                   width: screenSize.width * 0.1,
                                   child: Column(
                                     children: [
@@ -702,41 +818,13 @@ class _LandingScreenState extends State<LandingScreen> {
                                   ),
                                 ),
                                 Container(
-                                  height: screenSize.height * 0.5,
+                                  height: screenSize.height * 0.4,
                                   width: screenSize.width * 0.1,
                                   child: Column(
                                     children: [
                                       Text(
-                                        "Back-end",
-                                        style: TextStyle(
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.bold,
-                                          //color: Color(0xffF00C7F5),
-                                          fontFamily: GoogleFonts.montserrat()
-                                              .fontFamily,
-                                        ),
-                                      ),
-                                      const SizedBox(
-                                        height: 20,
-                                      ),
-                                      SizedBox(
-                                        height: 60,
-                                        width: 100,
-                                        child: Image.asset(
-                                          "./images/node.png",
-                                          fit: BoxFit.fitWidth,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                Container(
-                                  height: screenSize.height * 0.5,
-                                  width: screenSize.width * 0.1,
-                                  child: Column(
-                                    children: [
-                                      Text(
-                                        "Back-end",
+                                        "Quality services",
+                                        textAlign: TextAlign.center,
                                         style: TextStyle(
                                           fontSize: 20,
                                           fontWeight: FontWeight.bold,
@@ -750,10 +838,42 @@ class _LandingScreenState extends State<LandingScreen> {
                                       ),
                                       SizedBox(
                                         height: 80,
-                                        width: 80,
-                                        child: Image.asset(
-                                          "./images/spring.png",
-                                          fit: BoxFit.cover,
+                                        width: 100,
+                                        child: Icon(
+                                          Icons.check_circle,
+                                          size: 80,
+                                          color: Colors.green,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                Container(
+                                  height: screenSize.height * 0.4,
+                                  width: screenSize.width * 0.1,
+                                  child: Column(
+                                    children: [
+                                      Text(
+                                        "Security apps",
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.bold,
+                                          //color: Color(0xffF00C7F5),
+                                          fontFamily: GoogleFonts.montserrat()
+                                              .fontFamily,
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        height: 20,
+                                      ),
+                                      SizedBox(
+                                        height: 80,
+                                        width: 100,
+                                        child: Icon(
+                                          Icons.privacy_tip_outlined,
+                                          size: 80,
+                                          color: Color(0xffF5C800),
                                         ),
                                       ),
                                     ],
@@ -768,7 +888,190 @@ class _LandingScreenState extends State<LandingScreen> {
                   ),
                 ),
               ),
-            )
+            ),
+            Container(
+                height: screenSize.height,
+                width: screenSize.width,
+                child: SingleChildScrollView(
+                  padding: EdgeInsets.only(top: 60, left: 60, right: 60),
+                  child: Column(
+                    children: [
+                      Text(
+                        "My Experience",
+                        style: TextStyle(
+                          fontSize: 25,
+                          fontWeight: FontWeight.bold,
+                          //color: Color(0xffF00C7F5),
+
+                          /*  fontFamily: GoogleFonts.montserratAlternates()
+                                    .fontFamily, */
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 40,
+                      ),
+                      Container(
+                        width: screenSize.width * 0.8,
+                        height: screenSize.height * 0.7,
+                        decoration: BoxDecoration(
+                            color: Colors.grey[300],
+                            borderRadius: BorderRadius.circular(20),
+                            boxShadow: [
+                              BoxShadow(
+                                offset: Offset(0, 0.5),
+                                spreadRadius: 5,
+                                color: Color(0xffF00C7F5),
+                              )
+                            ],
+                            border: Border.all(
+                              color: Color(0xff0000A8),
+                              width: 3,
+                            )),
+                        padding:
+                            EdgeInsets.symmetric(vertical: 30, horizontal: 60),
+                        child: Container(
+                          height: screenSize.height * 0.4,
+                          width: screenSize.width * 0.1,
+                          child: Wrap(
+                            alignment: WrapAlignment.spaceBetween,
+                            children: [
+                              Container(
+                                child: Column(
+                                  children: [
+                                    Text(
+                                      "IBM Brazil",
+                                      style: TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold,
+                                        //color: Color(0xffF00C7F5),
+                                        fontFamily:
+                                            GoogleFonts.montserrat().fontFamily,
+                                      ),
+                                    ),
+                                    const SizedBox(
+                                      height: 20,
+                                    ),
+                                    SizedBox(
+                                      height: 80,
+                                      width: 200,
+                                      child: Image.asset(
+                                        "./images/ibm_logo.png",
+                                        fit: BoxFit.contain,
+                                      ),
+                                    ),
+                                    const SizedBox(
+                                      height: 20,
+                                    ),
+                                    Container(
+                                      width: screenSize.width * 0.2,
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 20.0),
+                                      child: Text(
+                                        "Work as intern mobile/web engineer",
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.bold,
+                                          //color: Color(0xffF00C7F5),
+                                          /*fontFamily: GoogleFonts.montserrat()
+                                              .fontFamily,*/
+                                        ),
+                                      ),
+                                    ),
+                                    const SizedBox(
+                                      height: 20,
+                                    ),
+                                    Container(
+                                      width: screenSize.width * 0.2,
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 20.0),
+                                      child: Text(
+                                        "1 year\n (aug 2019 \n- june 2020)",
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.bold,
+                                          //color: Color(0xffF00C7F5),
+                                          /*fontFamily: GoogleFonts.montserrat()
+                                              .fontFamily,*/
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Container(
+                                child: Column(
+                                  children: [
+                                    Text(
+                                      "Netbiis",
+                                      style: TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold,
+                                        //color: Color(0xffF00C7F5),
+                                        fontFamily:
+                                            GoogleFonts.montserrat().fontFamily,
+                                      ),
+                                    ),
+                                    const SizedBox(
+                                      height: 20,
+                                    ),
+                                    SizedBox(
+                                      height: 80,
+                                      width: 200,
+                                      child: Image.asset(
+                                        "./images/logo_netbiis.png",
+                                        fit: BoxFit.contain,
+                                      ),
+                                    ),
+                                    const SizedBox(
+                                      height: 20,
+                                    ),
+                                    Container(
+                                      width: screenSize.width * 0.2,
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 20.0),
+                                      child: Text(
+                                        "Work as mid Flutter mobile/web engineer",
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.bold,
+                                          //color: Color(0xffF00C7F5),
+                                          /*fontFamily: GoogleFonts.montserrat()
+                                              .fontFamily,*/
+                                        ),
+                                      ),
+                                    ),
+                                    const SizedBox(
+                                      height: 20,
+                                    ),
+                                    Container(
+                                      width: screenSize.width * 0.2,
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 20.0),
+                                      child: Text(
+                                        "1 year\n (october 2021 \n- currently)",
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.bold,
+                                          //color: Color(0xffF00C7F5),
+                                          /*fontFamily: GoogleFonts.montserrat()
+                                              .fontFamily,*/
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                ))
           ],
         ),
       ),
