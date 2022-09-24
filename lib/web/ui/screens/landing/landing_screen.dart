@@ -137,7 +137,6 @@ class _LandingScreenState extends State<LandingScreen> {
     ScrollController scrollController =
         ScrollController(initialScrollOffset: 0, keepScrollOffset: true);
     var screenSize = MediaQuery.of(context).size;
-    print(screenSize.height);
     double sizeHeight = 60;
     return Scaffold(
       appBar: PreferredSize(
@@ -190,9 +189,7 @@ class _LandingScreenState extends State<LandingScreen> {
                     physics: NeverScrollableScrollPhysics(),
                     child: Column(
                       children: [
-                        SizedBox(
-                          height: screenSize.height < 1000 ? 210 : 400,
-                        ),
+                        SizedBox(height: screenSize.height * 0.3),
                         Container(
                           height: screenSize.height * 0.7,
                           //color: Colors.pink,
@@ -417,9 +414,7 @@ class _LandingScreenState extends State<LandingScreen> {
                 Positioned(
                   top: 60,
                   child: Container(
-                    height: screenSize.height < 1000
-                        ? screenSize.height * 0.25
-                        : screenSize.height * 0.4,
+                    height: screenSize.height * 0.25,
                     width: 200,
                     child: VerticalDivider(
                       color: Colors.white,
@@ -431,9 +426,7 @@ class _LandingScreenState extends State<LandingScreen> {
                 Positioned(
                   top: screenSize.height < 1000 ? 450 : 560,
                   child: Container(
-                    height: screenSize.height < 1000
-                        ? screenSize.height * 0.3
-                        : screenSize.height * 0.4,
+                    height: screenSize.height * 0.3,
                     width: 200,
                     child: VerticalDivider(
                       color: Colors.white,
