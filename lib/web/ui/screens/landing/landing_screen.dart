@@ -424,7 +424,9 @@ class _LandingScreenState extends State<LandingScreen> {
                   ),
                 ),
                 Positioned(
-                  top: screenSize.height * 0.6,
+                  top: screenSize.height < 700
+                      ? screenSize.height * 0.62
+                      : screenSize.height * 0.6,
                   child: Container(
                     height: screenSize.height * 0.3,
                     width: 200,
