@@ -193,8 +193,8 @@ class _LandingScreenState extends State<LandingScreen> {
                           height: kIsWeb
                               ? screenSize.height < 1000
                                   ? 210
-                                  : 
-                              : 300,
+                                  : 400
+                              : 400,
                         ),
                         Container(
                           height: screenSize.height * 0.7,
@@ -434,7 +434,7 @@ class _LandingScreenState extends State<LandingScreen> {
                   ),
                 ),
                 Positioned(
-                  top: screenSize.height<1000?450:560,
+                  top: screenSize.height < 1000 ? 450 : 560,
                   child: Container(
                     height: kIsWeb
                         ? screenSize.height < 1000
