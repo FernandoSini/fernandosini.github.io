@@ -193,8 +193,8 @@ class _LandingScreenState extends State<LandingScreen> {
                           height: kIsWeb
                               ? screenSize.height < 1000
                                   ? 210
-                                  : 240
-                              : 220,
+                                  : 300
+                              : 300,
                         ),
                         Container(
                           height: screenSize.height * 0.7,
@@ -207,7 +207,9 @@ class _LandingScreenState extends State<LandingScreen> {
                               Container(
                                 height: screenSize.height,
                                 padding: EdgeInsets.only(
-                                    top: screenSize.height / 15),
+                                    top: screenSize.height < 1000
+                                        ? screenSize.height / 15
+                                        : screenSize.height / 12),
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
