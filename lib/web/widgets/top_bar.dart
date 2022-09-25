@@ -26,6 +26,7 @@ class _TopBarState extends State<TopBar> {
   List<bool> onHoverList = [false, false, false, false, false, false, false];
   @override
   Widget build(BuildContext context) {
+    var screenSize = MediaQuery.of(context).size;
     return PreferredSize(
       preferredSize: widget.screenSizeHeight != null
           ? Size.fromHeight(widget.screenSizeHeight!)
@@ -49,7 +50,10 @@ class _TopBarState extends State<TopBar> {
           leading: InkWell(
             onHover: (value) {},
             onTap: () {
-              QR.toName(WebRoutesNames.landing);
+              // QR.toName(WebRoutesNames.landing);
+              widget.scrollController!.animateTo(screenSize.height * 0,
+                  duration: const Duration(seconds: 1),
+                  curve: Curves.fastOutSlowIn);
             },
             hoverColor: Colors.transparent,
             splashColor: Colors.transparent,
@@ -83,7 +87,12 @@ class _TopBarState extends State<TopBar> {
                         splashColor: Colors.transparent,
                         highlightColor: Colors.transparent,
                         onTap: () {
-                          QR.toName(WebRoutesNames.aboutMe);
+                          // QR.toName(WebRoutesNames.aboutMe);
+
+                          widget.scrollController!.animateTo(
+                              screenSize.height * 4,
+                              duration: const Duration(seconds: 1),
+                              curve: Curves.fastOutSlowIn);
                         },
                         child: Text(
                           "About me",

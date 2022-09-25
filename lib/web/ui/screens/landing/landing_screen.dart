@@ -1,5 +1,4 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttericon/font_awesome5_icons.dart';
 import 'package:fluttericon/font_awesome_icons.dart';
@@ -143,7 +142,7 @@ class _LandingScreenState extends State<LandingScreen> {
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(sizeHeight),
         child: TopBar(
-          screenSizeHeight: sizeHeight,
+          screenSizeHeight: sizeHeight, scrollController: scrollController,
           // color: Colors.blue,
           radius: null,
         ),
@@ -885,188 +884,243 @@ class _LandingScreenState extends State<LandingScreen> {
               ),
             ),
             Container(
-                height: screenSize.height,
-                width: screenSize.width,
-                child: SingleChildScrollView(
-                  padding: EdgeInsets.only(top: 60, left: 60, right: 60),
-                  child: Column(
-                    children: [
-                      Text(
-                        "My Experience",
-                        style: TextStyle(
-                          fontSize: 25,
-                          fontWeight: FontWeight.bold,
-                          //color: Color(0xffF00C7F5),
+              height: screenSize.height,
+              width: screenSize.width,
+              child: SingleChildScrollView(
+                padding: EdgeInsets.only(top: 60, left: 60, right: 60),
+                child: Column(
+                  children: [
+                    Text(
+                      "My Experience",
+                      style: TextStyle(
+                        fontSize: 25,
+                        fontWeight: FontWeight.bold,
+                        //color: Color(0xffF00C7F5),
 
-                          /*  fontFamily: GoogleFonts.montserratAlternates()
+                        /*  fontFamily: GoogleFonts.montserratAlternates()
                                     .fontFamily, */
-                        ),
                       ),
-                      const SizedBox(
-                        height: 40,
-                      ),
-                      Container(
-                        width: screenSize.width * 0.8,
-                        height: screenSize.height * 0.7,
-                        decoration: BoxDecoration(
-                            color: Colors.grey[300],
-                            borderRadius: BorderRadius.circular(20),
-                            boxShadow: [
-                              BoxShadow(
-                                offset: Offset(0, 0.5),
-                                spreadRadius: 5,
-                                color: Color(0xffF00C7F5),
-                              )
-                            ],
-                            border: Border.all(
-                              color: Color(0xff0000A8),
-                              width: 3,
-                            )),
-                        padding:
-                            EdgeInsets.symmetric(vertical: 30, horizontal: 60),
-                        child: Container(
-                          height: screenSize.height * 0.4,
-                          width: screenSize.width * 0.1,
-                          child: Wrap(
-                            alignment: WrapAlignment.spaceBetween,
-                            children: [
-                              Container(
-                                child: Column(
-                                  children: [
-                                    Text(
-                                      "IBM Brazil",
+                    ),
+                    const SizedBox(
+                      height: 40,
+                    ),
+                    Container(
+                      width: screenSize.width * 0.8,
+                      height: screenSize.height * 0.7,
+                      decoration: BoxDecoration(
+                          color: Colors.grey[300],
+                          borderRadius: BorderRadius.circular(20),
+                          boxShadow: [
+                            BoxShadow(
+                              offset: Offset(0, 0.5),
+                              spreadRadius: 5,
+                              color: Color(0xffF00C7F5),
+                            )
+                          ],
+                          border: Border.all(
+                            color: Color(0xff0000A8),
+                            width: 3,
+                          )),
+                      padding:
+                          EdgeInsets.symmetric(vertical: 30, horizontal: 60),
+                      child: Container(
+                        height: screenSize.height * 0.4,
+                        width: screenSize.width * 0.1,
+                        child: Wrap(
+                          alignment: WrapAlignment.spaceBetween,
+                          children: [
+                            Container(
+                              child: Column(
+                                children: [
+                                  Text(
+                                    "IBM Brazil",
+                                    style: TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                      //color: Color(0xffF00C7F5),
+                                      fontFamily:
+                                          GoogleFonts.montserrat().fontFamily,
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: 20,
+                                  ),
+                                  SizedBox(
+                                    height: 80,
+                                    width: 200,
+                                    child: Image.asset(
+                                      "./images/ibm_logo.png",
+                                      fit: BoxFit.contain,
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: 20,
+                                  ),
+                                  Container(
+                                    width: screenSize.width * 0.2,
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 20.0),
+                                    child: Text(
+                                      "Work as intern mobile/web engineer",
+                                      textAlign: TextAlign.center,
                                       style: TextStyle(
                                         fontSize: 20,
                                         fontWeight: FontWeight.bold,
                                         //color: Color(0xffF00C7F5),
-                                        fontFamily:
-                                            GoogleFonts.montserrat().fontFamily,
-                                      ),
-                                    ),
-                                    const SizedBox(
-                                      height: 20,
-                                    ),
-                                    SizedBox(
-                                      height: 80,
-                                      width: 200,
-                                      child: Image.asset(
-                                        "./images/ibm_logo.png",
-                                        fit: BoxFit.contain,
-                                      ),
-                                    ),
-                                    const SizedBox(
-                                      height: 20,
-                                    ),
-                                    Container(
-                                      width: screenSize.width * 0.2,
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 20.0),
-                                      child: Text(
-                                        "Work as intern mobile/web engineer",
-                                        textAlign: TextAlign.center,
-                                        style: TextStyle(
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.bold,
-                                          //color: Color(0xffF00C7F5),
-                                          /*fontFamily: GoogleFonts.montserrat()
+                                        /*fontFamily: GoogleFonts.montserrat()
                                               .fontFamily,*/
-                                        ),
                                       ),
                                     ),
-                                    const SizedBox(
-                                      height: 20,
-                                    ),
-                                    Container(
-                                      width: screenSize.width * 0.2,
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 20.0),
-                                      child: Text(
-                                        "1 year\n (aug 2019 \n- june 2020)",
-                                        textAlign: TextAlign.center,
-                                        style: TextStyle(
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.bold,
-                                          //color: Color(0xffF00C7F5),
-                                          /*fontFamily: GoogleFonts.montserrat()
-                                              .fontFamily,*/
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Container(
-                                child: Column(
-                                  children: [
-                                    Text(
-                                      "Netbiis",
+                                  ),
+                                  const SizedBox(
+                                    height: 20,
+                                  ),
+                                  Container(
+                                    width: screenSize.width * 0.2,
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 20.0),
+                                    child: Text(
+                                      "1 year\n (aug 2019 \n- june 2020)",
+                                      textAlign: TextAlign.center,
                                       style: TextStyle(
                                         fontSize: 20,
                                         fontWeight: FontWeight.bold,
                                         //color: Color(0xffF00C7F5),
-                                        fontFamily:
-                                            GoogleFonts.montserrat().fontFamily,
-                                      ),
-                                    ),
-                                    const SizedBox(
-                                      height: 20,
-                                    ),
-                                    SizedBox(
-                                      height: 80,
-                                      width: 200,
-                                      child: Image.asset(
-                                        "./images/logo_netbiis.png",
-                                        fit: BoxFit.contain,
-                                      ),
-                                    ),
-                                    const SizedBox(
-                                      height: 20,
-                                    ),
-                                    Container(
-                                      width: screenSize.width * 0.2,
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 20.0),
-                                      child: Text(
-                                        "Work as mid Flutter mobile/web engineer",
-                                        textAlign: TextAlign.center,
-                                        style: TextStyle(
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.bold,
-                                          //color: Color(0xffF00C7F5),
-                                          /*fontFamily: GoogleFonts.montserrat()
+                                        /*fontFamily: GoogleFonts.montserrat()
                                               .fontFamily,*/
-                                        ),
                                       ),
                                     ),
-                                    const SizedBox(
-                                      height: 20,
-                                    ),
-                                    Container(
-                                      width: screenSize.width * 0.2,
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 20.0),
-                                      child: Text(
-                                        "1 year\n (october 2021 \n- currently)",
-                                        textAlign: TextAlign.center,
-                                        style: TextStyle(
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.bold,
-                                          //color: Color(0xffF00C7F5),
-                                          /*fontFamily: GoogleFonts.montserrat()
-                                              .fontFamily,*/
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
+                                  ),
+                                ],
                               ),
-                            ],
-                          ),
+                            ),
+                            Container(
+                              child: Column(
+                                children: [
+                                  Text(
+                                    "Netbiis",
+                                    style: TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                      //color: Color(0xffF00C7F5),
+                                      fontFamily:
+                                          GoogleFonts.montserrat().fontFamily,
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: 20,
+                                  ),
+                                  SizedBox(
+                                    height: 80,
+                                    width: 200,
+                                    child: Image.asset(
+                                      "./images/logo_netbiis.png",
+                                      fit: BoxFit.contain,
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: 20,
+                                  ),
+                                  Container(
+                                    width: screenSize.width * 0.2,
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 20.0),
+                                    child: Text(
+                                      "Work as mid Flutter mobile/web engineer",
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold,
+                                        //color: Color(0xffF00C7F5),
+                                        /*fontFamily: GoogleFonts.montserrat()
+                                              .fontFamily,*/
+                                      ),
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: 20,
+                                  ),
+                                  Container(
+                                    width: screenSize.width * 0.2,
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 20.0),
+                                    child: Text(
+                                      "1 year\n (october 2021 \n- currently)",
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold,
+                                        //color: Color(0xffF00C7F5),
+                                        /*fontFamily: GoogleFonts.montserrat()
+                                              .fontFamily,*/
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
                         ),
-                      )
-                    ],
-                  ),
-                ))
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ),
+            Container(
+              height: screenSize.height,
+              width: screenSize.width,
+              child: SingleChildScrollView(
+                padding: EdgeInsets.only(top: 60, left: 60, right: 60),
+                child: Column(
+                  children: [
+                    Text(
+                      "About me",
+                      style: TextStyle(
+                        fontSize: 25,
+                        fontWeight: FontWeight.bold,
+                        //color: Color(0xffF00C7F5),
+
+                        /*  fontFamily: GoogleFonts.montserratAlternates()
+                                    .fontFamily, */
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 40,
+                    ),
+                    Container(
+                      width: screenSize.width * 0.8,
+                      height: screenSize.height * 0.7,
+                      decoration: BoxDecoration(
+                        color: Colors.grey[300],
+                        borderRadius: BorderRadius.circular(20),
+                        boxShadow: [
+                          BoxShadow(
+                            offset: Offset(0, 0.5),
+                            spreadRadius: 5,
+                            color: Color(0xffF00C7F5),
+                          )
+                        ],
+                        border: Border.all(
+                          color: Color(0xff0000A8),
+                          width: 3,
+                        ),
+                      ),
+                      padding:
+                          EdgeInsets.symmetric(vertical: 30, horizontal: 60),
+                      child: Container(
+                        height: screenSize.height * 0.4,
+                        width: screenSize.width * 0.1,
+                        child: Wrap(
+                          alignment: WrapAlignment.spaceBetween,
+                          children: [],
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ),
           ],
         ),
       ),
