@@ -137,6 +137,7 @@ class _LandingScreenState extends State<LandingScreen> {
     ScrollController scrollController =
         ScrollController(initialScrollOffset: 0, keepScrollOffset: true);
     var screenSize = MediaQuery.of(context).size;
+    print(screenSize.height);
     double sizeHeight = 60;
     return Scaffold(
       appBar: PreferredSize(
@@ -424,11 +425,13 @@ class _LandingScreenState extends State<LandingScreen> {
                   ),
                 ),
                 Positioned(
-                  top: screenSize.height < 690
-                      ? screenSize.height * 0.62
+                  top: screenSize.height < 700
+                      ? screenSize.height * 0.65
                       : screenSize.height * 0.6,
                   child: Container(
-                    height: screenSize.height * 0.3,
+                    height: screenSize.height < 700
+                        ? screenSize.height * 0.25
+                        : screenSize.height * 0.3,
                     width: 200,
                     child: VerticalDivider(
                       color: Colors.white,
