@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:fluttericon/font_awesome5_icons.dart';
 import 'package:fluttericon/font_awesome_icons.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
+import 'package:mysite/web/widgets/responsive.dart';
 import 'dart:html' as html;
 
 import 'package:mysite/web/widgets/top_bar.dart';
@@ -192,11 +194,15 @@ class _LandingScreenState extends State<LandingScreen> {
                         SizedBox(height: screenSize.height * 0.3),
                         Container(
                           height: screenSize.height * 0.7,
+                          width: Responsive.isSmallScreen(context)
+                              ? screenSize.width
+                              : screenSize.width,
                           //color: Colors.pink,
                           child: Row(
                             children: [
-                              const SizedBox(
-                                width: 60,
+                              SizedBox(
+                                width:
+                                    Responsive.isSmallScreen(context) ? 0 : 60,
                               ),
                               Container(
                                 height: screenSize.height,
@@ -273,8 +279,9 @@ class _LandingScreenState extends State<LandingScreen> {
                                   ],
                                 ),
                               ),
-                              const SizedBox(
-                                width: 40,
+                              SizedBox(
+                                width:
+                                    Responsive.isSmallScreen(context) ? 0 : 40,
                               ),
                               Container(
                                 height: screenSize.height,
@@ -367,13 +374,12 @@ class _LandingScreenState extends State<LandingScreen> {
                                       ],
                                     ),
                                     Container(
-                                      alignment: Alignment.bottomCenter,
+                                      //alignment: Alignment.bottomCenter,
                                       //height: 100,
                                       margin: EdgeInsets.only(bottom: 50),
                                       width: screenSize.width,
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
+                                      child: Wrap(
+                                        alignment: WrapAlignment.center,
                                         children: [
                                           IconButton(
                                             splashColor: Colors.white,
@@ -413,6 +419,7 @@ class _LandingScreenState extends State<LandingScreen> {
                 ),
                 Positioned(
                   top: 60,
+                  left: Responsive.isSmallScreen(context) ? -60 : null,
                   child: Container(
                     height: screenSize.height * 0.25,
                     width: 200,
@@ -429,6 +436,7 @@ class _LandingScreenState extends State<LandingScreen> {
                       : screenSize.height < 800
                           ? screenSize.height * 0.65
                           : screenSize.height * 0.6,
+                  left: Responsive.isSmallScreen(context) ? -60 : null,
                   child: Container(
                     height: screenSize.height < 700
                         ? screenSize.height * 0.25
@@ -730,13 +738,18 @@ class _LandingScreenState extends State<LandingScreen> {
                               color: Color(0xff0000A8),
                               width: 3,
                             )),
-                        padding:
-                            EdgeInsets.symmetric(vertical: 30, horizontal: 60),
+                        padding: EdgeInsets.symmetric(
+                            vertical: 30,
+                            horizontal:
+                                Responsive.isSmallScreen(context) ? 10 : 50),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
                             Text(
                               "What you can expect from me",
+                              textAlign: Responsive.isSmallScreen(context)
+                                  ? TextAlign.center
+                                  : null,
                               style: TextStyle(
                                 fontSize: 25,
                                 fontWeight: FontWeight.bold,
@@ -746,19 +759,24 @@ class _LandingScreenState extends State<LandingScreen> {
                                     .fontFamily, */
                               ),
                             ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            Wrap(
+                              runAlignment: WrapAlignment.spaceBetween,
                               children: [
                                 Container(
                                   height: screenSize.height * 0.4,
-                                  width: screenSize.width * 0.1,
+                                  width: Responsive.isSmallScreen(context)
+                                      ? screenSize.width * 0.15
+                                      : screenSize.width * 0.15,
                                   child: Column(
                                     children: [
                                       Text(
                                         "Beautiful apps",
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
-                                          fontSize: 20,
+                                          fontSize:
+                                              Responsive.isSmallScreen(context)
+                                                  ? 12
+                                                  : 20,
                                           fontWeight: FontWeight.bold,
                                           //color: Color(0xffF00C7F5),
                                           fontFamily: GoogleFonts.montserrat()
@@ -774,7 +792,10 @@ class _LandingScreenState extends State<LandingScreen> {
                                         child: Icon(
                                           FontAwesome5.mobile_alt,
                                           color: Color(0xff0000a8),
-                                          size: 80,
+                                          size:
+                                              Responsive.isSmallScreen(context)
+                                                  ? 40
+                                                  : 80,
                                         ),
                                       ),
                                     ],
@@ -782,14 +803,19 @@ class _LandingScreenState extends State<LandingScreen> {
                                 ),
                                 Container(
                                   height: screenSize.height * 0.4,
-                                  width: screenSize.width * 0.1,
+                                  width: Responsive.isSmallScreen(context)
+                                      ? screenSize.width * 0.15
+                                      : screenSize.width * 0.15,
                                   child: Column(
                                     children: [
                                       Text(
                                         "Responsive Layouts",
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
-                                          fontSize: 20,
+                                          fontSize:
+                                              Responsive.isSmallScreen(context)
+                                                  ? 12
+                                                  : 20,
                                           fontWeight: FontWeight.bold,
                                           //color: Color(0xffF00C7F5),
                                           fontFamily: GoogleFonts.montserrat()
@@ -804,7 +830,10 @@ class _LandingScreenState extends State<LandingScreen> {
                                         width: 100,
                                         child: Icon(
                                           Icons.computer_outlined,
-                                          size: 100,
+                                          size:
+                                              Responsive.isSmallScreen(context)
+                                                  ? 50
+                                                  : 100,
                                           color: Color(0xff0000a8),
                                         ),
                                       ),
@@ -813,14 +842,19 @@ class _LandingScreenState extends State<LandingScreen> {
                                 ),
                                 Container(
                                   height: screenSize.height * 0.4,
-                                  width: screenSize.width * 0.1,
+                                  width: Responsive.isSmallScreen(context)
+                                      ? screenSize.width * 0.15
+                                      : screenSize.width * 0.15,
                                   child: Column(
                                     children: [
                                       Text(
                                         "Quality services",
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
-                                          fontSize: 20,
+                                          fontSize:
+                                              Responsive.isSmallScreen(context)
+                                                  ? 12
+                                                  : 20,
                                           fontWeight: FontWeight.bold,
                                           //color: Color(0xffF00C7F5),
                                           fontFamily: GoogleFonts.montserrat()
@@ -835,7 +869,10 @@ class _LandingScreenState extends State<LandingScreen> {
                                         width: 100,
                                         child: Icon(
                                           Icons.check_circle,
-                                          size: 80,
+                                          size:
+                                              Responsive.isSmallScreen(context)
+                                                  ? 40
+                                                  : 80,
                                           color: Colors.green,
                                         ),
                                       ),
@@ -844,14 +881,19 @@ class _LandingScreenState extends State<LandingScreen> {
                                 ),
                                 Container(
                                   height: screenSize.height * 0.4,
-                                  width: screenSize.width * 0.1,
+                                  width: Responsive.isSmallScreen(context)
+                                      ? screenSize.width * 0.15
+                                      : screenSize.width * 0.1,
                                   child: Column(
                                     children: [
                                       Text(
                                         "Security apps",
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
-                                          fontSize: 20,
+                                          fontSize:
+                                              Responsive.isSmallScreen(context)
+                                                  ? 12
+                                                  : 20,
                                           fontWeight: FontWeight.bold,
                                           //color: Color(0xffF00C7F5),
                                           fontFamily: GoogleFonts.montserrat()
@@ -866,7 +908,10 @@ class _LandingScreenState extends State<LandingScreen> {
                                         width: 100,
                                         child: Icon(
                                           Icons.privacy_tip_outlined,
-                                          size: 80,
+                                          size:
+                                              Responsive.isSmallScreen(context)
+                                                  ? 40
+                                                  : 80,
                                           color: Color(0xffF5C800),
                                         ),
                                       ),
@@ -947,7 +992,9 @@ class _LandingScreenState extends State<LandingScreen> {
                                   ),
                                   SizedBox(
                                     height: 80,
-                                    width: 200,
+                                    width: Responsive.isSmallScreen(context)
+                                        ? 100
+                                        : 200,
                                     child: Image.asset(
                                       "./images/ibm_logo.png",
                                       fit: BoxFit.contain,
@@ -958,13 +1005,19 @@ class _LandingScreenState extends State<LandingScreen> {
                                   ),
                                   Container(
                                     width: screenSize.width * 0.2,
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 20.0),
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal:
+                                            Responsive.isSmallScreen(context)
+                                                ? 10
+                                                : 20.0),
                                     child: Text(
                                       "Work as intern mobile/web engineer",
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
-                                        fontSize: 20,
+                                        fontSize:
+                                            Responsive.isSmallScreen(context)
+                                                ? 12
+                                                : 20,
                                         fontWeight: FontWeight.bold,
                                         //color: Color(0xffF00C7F5),
                                         /*fontFamily: GoogleFonts.montserrat()
@@ -977,13 +1030,19 @@ class _LandingScreenState extends State<LandingScreen> {
                                   ),
                                   Container(
                                     width: screenSize.width * 0.2,
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 20.0),
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal:
+                                            Responsive.isSmallScreen(context)
+                                                ? 10
+                                                : 20.0),
                                     child: Text(
                                       "1 year\n (aug 2019 \n- june 2020)",
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
-                                        fontSize: 20,
+                                        fontSize:
+                                            Responsive.isSmallScreen(context)
+                                                ? 12
+                                                : 20,
                                         fontWeight: FontWeight.bold,
                                         //color: Color(0xffF00C7F5),
                                         /*fontFamily: GoogleFonts.montserrat()
@@ -1012,7 +1071,9 @@ class _LandingScreenState extends State<LandingScreen> {
                                   ),
                                   SizedBox(
                                     height: 80,
-                                    width: 200,
+                                    width: Responsive.isSmallScreen(context)
+                                        ? 100
+                                        : 200,
                                     child: Image.asset(
                                       "./images/logo_netbiis.png",
                                       fit: BoxFit.contain,
@@ -1023,13 +1084,19 @@ class _LandingScreenState extends State<LandingScreen> {
                                   ),
                                   Container(
                                     width: screenSize.width * 0.2,
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 20.0),
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal:
+                                            Responsive.isSmallScreen(context)
+                                                ? 10
+                                                : 20.0),
                                     child: Text(
                                       "Work as mid Flutter mobile/web engineer",
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
-                                        fontSize: 20,
+                                        fontSize:
+                                            Responsive.isSmallScreen(context)
+                                                ? 12
+                                                : 20,
                                         fontWeight: FontWeight.bold,
                                         //color: Color(0xffF00C7F5),
                                         /*fontFamily: GoogleFonts.montserrat()
@@ -1042,13 +1109,19 @@ class _LandingScreenState extends State<LandingScreen> {
                                   ),
                                   Container(
                                     width: screenSize.width * 0.2,
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 20.0),
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal:
+                                            Responsive.isSmallScreen(context)
+                                                ? 10
+                                                : 20.0),
                                     child: Text(
                                       "1 year\n (october 2021 \n- currently)",
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
-                                        fontSize: 20,
+                                        fontSize:
+                                            Responsive.isSmallScreen(context)
+                                                ? 12
+                                                : 20,
                                         fontWeight: FontWeight.bold,
                                         //color: Color(0xffF00C7F5),
                                         /*fontFamily: GoogleFonts.montserrat()
@@ -1113,7 +1186,20 @@ class _LandingScreenState extends State<LandingScreen> {
                         width: screenSize.width * 0.1,
                         child: Wrap(
                           alignment: WrapAlignment.spaceBetween,
-                          children: [],
+                          children: [
+                            Text(
+                              "Hi. I'm Fernando Sinigaglia.\n" +
+                                  "I'm ${new DateTime.now().year - new DateFormat("dd/MM/yyyy").parse("16/04/1997").year} years.\n" +
+                                  "I'm huge fan of video games.\n" +
+                                  "I have bachelor in Information System by: ESPM (Escola Superior de Propaganda e Marketing or The Higher School of Advertising and Marketing) in Brazil. \n" +
+                                  "Programming is currently my passion.",
+                              style: TextStyle(
+                                fontSize:
+                                    Responsive.isSmallScreen(context) ? 13 : 25,
+                              ),
+                              softWrap: true,
+                            )
+                          ],
                         ),
                       ),
                     )
